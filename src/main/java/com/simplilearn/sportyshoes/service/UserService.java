@@ -12,4 +12,5 @@ import com.simplilearn.sportyshoes.model.User;
 public interface UserService extends UserDetailsService {
 	User save(UserRegistrationDto registrationDto);
 	List<User> getAll();
+	
 }

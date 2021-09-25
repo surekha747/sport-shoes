@@ -10,7 +10,10 @@ public class HomeController {
 	public String login() {
 		return "login";
 	}
-
+	@GetMapping("/changepassword")
+	public String changepassword() {
+		return "change-password";
+	}
 	@GetMapping("/")
 	public String home() {
 		return "index";

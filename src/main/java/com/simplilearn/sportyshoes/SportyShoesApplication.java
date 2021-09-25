@@ -18,23 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @SpringBootApplication
 
 public class SportyShoesApplication {
- 
-	
-	/*
-	 * @Bean public WebSecurityConfigurerAdapter webSecurityConfig(DataSource
-	 * dataSource) { return new WebSecurityConfigurerAdapter() {
-	 * 
-	 * @Override protected void configure(HttpSecurity http) throws Exception {
-	 * 
-	 * http.authorizeRequests().antMatchers("/").permitAll().and()
-	 * .authorizeRequests().antMatchers("/console/**").permitAll();
-	 * http.csrf().disable(); http.headers().frameOptions().disable(); }
-	 * 
-	 * @Override protected void configure(AuthenticationManagerBuilder builder)
-	 * throws Exception { builder.jdbcAuthentication() .dataSource(dataSource); } };
-	 * }
-	 */
-
 	public static void main(String[] args) {
 		SpringApplication.run(SportyShoesApplication.class, args);
 	}
