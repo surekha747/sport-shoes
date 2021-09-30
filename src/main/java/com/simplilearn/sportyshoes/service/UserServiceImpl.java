@@ -38,6 +38,22 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 	@Override
+	public User changepassword(UserRegistrationDto registrationDto) {
+		
+		String modelpassword=registrationDto.getPassword();
+		String newpassword=registrationDto.getNewpassword();
+		String username=registrationDto.getEmail();
+		User entity = userRepository.findByEmail(username);
+		String dbpassword=entity.getPassword();
+		
+		if (passwordEncoder.matches(modelpassword, dbpassword)) {
+			
+			entity.setPassword(passwordEncoder.encode(newpassword));
+			
+		}
+		return entity= userRepository.save(entity);
+	}
+	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		User user = userRepository.findByEmail(username);
@@ -57,5 +73,6 @@ public class UserServiceImpl implements UserService {
 		
 		return userRepository.findAll();
 	}
+	
 
 }

@@ -42,11 +42,5 @@ public class SignedUserController {
     }
     
     
-	/*
-	 * @GetMapping("/showuser") public String getUserByEmail(Model model,
-	 * 
-	 * @ModelAttribute("signedUsers") SignedUsers signedUsers,BindingResult result)
-	 * { List<SignedUsers> user =service.getUserByUserList(signedUsers.getEmail());
-	 * model.addAttribute("userbyemail", user); return "SignedUserList"; }
-	 */
+	
 }

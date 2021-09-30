@@ -1,9 +1,14 @@
 package com.simplilearn.sportyshoes.dto;
+
+
+
 public class UserRegistrationDto {
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
+	
+	private String newpassword;
 
 	public UserRegistrationDto() {
 
@@ -47,5 +52,13 @@ public class UserRegistrationDto {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
 	}
 }

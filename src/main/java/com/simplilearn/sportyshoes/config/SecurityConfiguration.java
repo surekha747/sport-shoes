@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		  http.authorizeRequests().antMatchers("/registration**", 
 				  //"/js/**", "/css/**",
-		  "/images/**").permitAll().anyRequest()
+		  "/images/**","/changepassword**").permitAll().anyRequest()
 		  .authenticated().and().formLogin().loginPage("/login").permitAll().and().
 		  logout() .invalidateHttpSession(true).clearAuthentication(true)
 		  .logoutRequestMatcher(new

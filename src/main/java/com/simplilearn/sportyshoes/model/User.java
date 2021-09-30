@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.JoinColumn;
 
@@ -33,6 +34,10 @@ public class User {
 	private String email;
 	@Column(name = "password")
 	private String password;
+	
+	@Transient
+	private String newpassword;
+
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -50,6 +55,15 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.roles = roles;
+	}
+
+	
+
+	public User( String email, String password,String newpassword) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.newpassword=newpassword;
 	}
 
 	public Long getId() {
