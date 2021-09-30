@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sports Shoes Application</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<style>
+.btn{
+
+width:330px;
+}
+input {
+	width: 15%;
+}
+
+.navbar {
+	background-color: green;
+}
+</style>
+<body>
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home
+					</a>
+					<a class="navbar-brand" th:href="@{/product}">Add New Product</a>
+					<a class="navbar-brand" th:href="@{/purchaseReport}">Purchase Report</a>
+					<a class="navbar-brand" th:href="@{/signeduserlist}">View Signed Users</a>
+					<a class="navbar-brand" th:href="@{/changepassword}">Change Password</a>
+					<a class="navbar-brand" th:href="@{/logout}">Logout</a>
+					
+			</div>
+		</div>
+	</nav><br><br>
+	<center><h1>Add New Product</h1></center><br>
+
+	<form th:action="@{/product}" method="post" th:object="${product}">
+
+		<div class="col-lg-2" th:object="${product.categorylist}">
+			<select class="form-control" id="id" name=shoe_type>
+				<option value="">Select Shoe Category</option>
+				<option th:each="shoe : ${product.categorylist}"
+					th:value="${shoe.shoe_type}"
+					th:text="${shoe.id}+' : '+${shoe.shoe_type}"></option>
+			</select><br>
+			<label>Select Gender</label></br>
+			<th:block th:each="gender : ${product.genderlist}">
+				<input type="checkbox" name="gender" id="gender" th:value="${gender.id}"/>
+				<label th:text="${gender.gender}"></label>
+				<br />
+			</th:block>
+		</div>
+		
+		
+		<div class="col-lg-2">
+		<label>Select Color(s)</label></br>
+			<th:block th:each="color : ${product.colorlist}">
+				<input type="checkbox" name="color" id="color" th:value="${color.id}"/>
+				<label th:text="${color.color_value}"></label>
+				<br />
+			</th:block>
+		</div>
+		<div class="col-lg-2">
+		<label>Select Size(s)</label></br>
+			<th:block th:each="size : ${product.sizelist}">
+				<input type="checkbox" name="size" id="size" th:value="${size.id}" />
+				<label th:text="${size.size_value}"></label>
+				<br />
+			</th:block>
+		</div>
+	
+	<div class="form-row">
+        <div class="col-md-2 form-group">
+            <label>Product Name</label>
+            <input type="text" name="product_name" class="form-control" 
+            placeholder="Enter Product Name" autofocus="autofocus">
+        </div>
+        <div class="col-md-2 form-group">
+            <label>Brand Name</label>
+            <input type="text" name="brand_name" class="form-control" placeholder="Enter Brand Name" autofocus="autofocus">
+        </div>
+        <div class="col-md-2 form-group">
+            <label>Standard Price</label>
+              <input type="text" name="standard_price" class="form-control" placeholder="Enter Standard Price" autofocus="autofocus">
+        </div>
+        <div class="col-md-2 form-group">
+            <label>Maximum Retail Price</label>
+            <input type="text" name="maximum_retail_price" class="form-control"
+             placeholder="Enter Maximus Retail Price">
+        </div>
+        <div class="col-md-2 form-group">
+            <label>Offers</label>
+            <input type="text" name="offers" class="form-control"   placeholder="Enter Offers">
+        </div>
+        <div class="col-md-2 form-group">
+            <label>SKU</label>
+            <input type="text" name="sku"  placeholder="Enter SKU" class="form-control">
+        </div>
+         <div class="col-md-2 form-group">
+            <label>Product Enrichment</label>
+            <input type="text" name="product_enrichment"  placeholder="Enter product enrichment" class="form-control">
+        </div>
+         <div class="col-md-2 form-group">
+            <label>Keyword</label>
+            <input type="text" name="keyword"  placeholder="Enter Keyword" class="form-control">
+        </div>
+         <div class="col-md-2 form-group">
+            <label>Discount</label>
+            <input type="text" name="discount"  placeholder="Enter Discount" class="form-control">
+        </div>
+         <div class="col-md-2 form-group">
+            <label>Stock</label>
+            <input type="text" name="stock"  placeholder="Enter Stock" class="form-control">
+        </div>
+       
+        <div class="col-md-2 form-group">
+            <label>Manufacturer</label>
+            <input type="text" name="manufacturer"  placeholder="Enter Manufacturer" class="form-control">
+        </div>
+        <!--  Item Weight -->
+       <!--  <div class="col-md-3 form-group">
+        <label>Browse Image file</label>
+            <input class="form-control" name="image" type="file" id="formFile"><br/>
+        </div> -->
+    </div>
+
+ 			
+        <br><br>
+						
+							<br><center>
+								<input type="submit" name="login-submit" id="login-submit"
+									class="btn btn-primary" value="SAVE" /></center>
+									
+							
+					
+					
+
+
+	</form>
+</body>
+</html>

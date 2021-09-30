@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sports Shoes Application</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<style>
+
+.navbar {
+	background-color: green;
+}
+</style>
+<body>
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home </a> <a
+					class="navbar-brand" th:href="@{/product}">Add New Product</a> <a
+					class="navbar-brand" th:href="@{/purchaseReport}">Purchase
+					Report</a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
+					Signed Users</a> <a class="navbar-brand" th:href="@{/changepassword}">Change
+					Password</a> <a class="navbar-brand" th:href="@{/logout}">Logout</a>
+
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<br>
+	<br>
+<body class="container">
+<center><h1>Download Purchase Report</h1><br><br></center>
+	<form th:action="@{/purchaseReport}" method="post"
+		th:object="${purchaseOrder}">
+		
+		<div class="form-group row">
+		<div class="col-sm-1 col-sm-offset-1"></div>
+			<div class="col-md-3 mt-3">
+				<label for="dateRange">Select From Date</label>
+				<div class="input-group">
+					<input type="date"  name="fromDate" id="date-started"/>
+				</div>
+			</div>
+			<div class="col-md-3 mt-2">
+				<label for="dateRange">Select To Date</label>
+				<div class="input-group">
+					<input type="date"  name="toDate" id="date-started"/>
+				</div>
+			</div><br>
+			<div class="col-md-2 mt-2" th:object="${purchaseOrder.categorylist}">
+			
+			<select class="form-control" id="id" name=shoe_type>
+				<option value="">Select Shoe Category</option>
+				<option th:each="shoe : ${purchaseOrder.categorylist}"
+					th:value="${shoe.shoe_type}"
+					th:text="${shoe.id}+' : '+${shoe.shoe_type}"></option>
+			</select>
+			</div>
+
+			
+		</div>
+
+<div class="col-sm-2 col-sm-offset-2">
+								<input type="submit" name="login-submit" id="login-submit"
+									class="form-control btn btn-primary" value="Submit" />
+							</div>
+	</form>
+</body>
+</body>
+</html>
