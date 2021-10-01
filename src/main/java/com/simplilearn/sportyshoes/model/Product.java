@@ -13,23 +13,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-
 @Entity
-@Table(name="product")
-public class Product implements Serializable{
-	
+@Table(name = "product")
+public class Product implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3515464855236976939L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long prod_id;
 	@Column
 	private String product_name;
@@ -53,6 +53,104 @@ public class Product implements Serializable{
 	private String discount;
 	@Column
 	private Long stock;
+	@Column
+	private String gender;
+	@Column 
+	private String color;
+	@Column
+	private String size;
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public Product(String product_name, String brand_name, String manufacturer, Double standard_price,
+			Double maximum_retail_price, String offers, String sku, String product_enrichment, String keyword,
+			String discount, Long stock, String gender, String color, String size, ShoeCategoryEntity shoeentity,
+			List<SizeEntity> sizeentity, List<ColorCategory> colorlist, List<SizeCategory> sizelist,
+			List<ShoesCategory> categorylist, List<GenderCategory> genderlist, List<Image> imagelist) {
+		super();
+		this.product_name = product_name;
+		this.brand_name = brand_name;
+		this.manufacturer = manufacturer;
+		this.standard_price = standard_price;
+		this.maximum_retail_price = maximum_retail_price;
+		this.offers = offers;
+		this.sku = sku;
+		this.product_enrichment = product_enrichment;
+		this.keyword = keyword;
+		this.discount = discount;
+		this.stock = stock;
+		this.gender = gender;
+		this.color = color;
+		this.size = size;
+		this.shoeentity = shoeentity;
+		this.sizeentity = sizeentity;
+		this.colorlist = colorlist;
+		this.sizelist = sizelist;
+		this.categorylist = categorylist;
+		this.genderlist = genderlist;
+		this.imagelist = imagelist;
+	}
+
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public List<SizeEntity> getSizeentity() {
+		return sizeentity;
+	}
+
+	public void setSizeentity(List<SizeEntity> sizeentity) {
+		this.sizeentity = sizeentity;
+	}
+
+	public Product(String product_name, String brand_name, String manufacturer, Double standard_price,
+			Double maximum_retail_price, String offers, String sku, String product_enrichment, String keyword,
+			String discount, Long stock, String gender, ShoeCategoryEntity shoeentity, List<SizeEntity> sizeentity,
+			List<ColorCategory> colorlist, List<SizeCategory> sizelist, List<ShoesCategory> categorylist,
+			List<GenderCategory> genderlist, List<Image> imagelist) {
+		super();
+		this.product_name = product_name;
+		this.brand_name = brand_name;
+		this.manufacturer = manufacturer;
+		this.standard_price = standard_price;
+		this.maximum_retail_price = maximum_retail_price;
+		this.offers = offers;
+		this.sku = sku;
+		this.product_enrichment = product_enrichment;
+		this.keyword = keyword;
+		this.discount = discount;
+		this.stock = stock;
+		this.gender = gender;
+		this.shoeentity = shoeentity;
+		this.sizeentity = sizeentity;
+		this.colorlist = colorlist;
+		this.sizelist = sizelist;
+		this.categorylist = categorylist;
+		this.genderlist = genderlist;
+		this.imagelist = imagelist;
+	}
+
+	@ManyToOne
+	private ShoeCategoryEntity shoeentity;
+	
+	@OneToMany(mappedBy ="product")
+	private List<SizeEntity> sizeentity;
+	
 	public String getDiscount() {
 		return discount;
 	}
@@ -68,24 +166,21 @@ public class Product implements Serializable{
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
 
-	@Transient  
-	private List <Color> colorlist;
-	  @OneToMany(cascade = CascadeType.ALL)
-	  @JoinColumn(name="pid")
-	  @OrderColumn(name="type")  
-	  private List <Size> sizelist;
-	
-	@Transient   
-	private List <ShoesCategory> categorylist;
-	
-	@Transient  
-	private List <Gender> genderlist;
-	
-	@Transient   
-	private List <Image> imagelist;
-	
+	@Transient
+	private List<ColorCategory> colorlist;
+	@Transient
+	private List<SizeCategory> sizelist;
+
+	@Transient
+	private List<ShoesCategory> categorylist;
+
+	@Transient
+	private List<GenderCategory> genderlist;
+
+	@Transient
+	private List<Image> imagelist;
+
 	public List<Image> getImagelist() {
 		return imagelist;
 	}
@@ -93,8 +188,6 @@ public class Product implements Serializable{
 	public void setImagelist(List<Image> imagelist) {
 		this.imagelist = imagelist;
 	}
-
-
 
 	public Long getProd_id() {
 		return prod_id;
@@ -104,21 +197,10 @@ public class Product implements Serializable{
 		this.prod_id = prod_id;
 	}
 
-	public List<Gender> getGenderlist() {
-		return genderlist;
-	}
-
-	public void setGenderlist(List<Gender> genderlist) {
-		this.genderlist = genderlist;
-	}
-
-	public Product() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public Product(String product_name, String brand_name, Double standard_price, Double maximum_retail_price,
-			String offers, String sku, String product_enrichment, Long stock, List<Color> colorlist) {
+			String offers, String sku, String product_enrichment, Long stock) {
 		super();
 		this.product_name = product_name;
 		this.brand_name = brand_name;
@@ -128,7 +210,7 @@ public class Product implements Serializable{
 		this.sku = sku;
 		this.product_enrichment = product_enrichment;
 		this.stock = stock;
-		this.colorlist = colorlist;
+		
 	}
 
 	public String getProduct_name() {
@@ -195,27 +277,37 @@ public class Product implements Serializable{
 		this.stock = stock;
 	}
 
-	public List <Color> getColorlist() {
+
+
+	public List<ColorCategory> getColorlist() {
 		return colorlist;
 	}
 
-	public void setColorlist(List <Color> colorlist) {
+	public void setColorlist(List<ColorCategory> colorlist) {
 		this.colorlist = colorlist;
 	}
 
-	public List <Size> getSizelist() {
+	public List<SizeCategory> getSizelist() {
 		return sizelist;
 	}
 
-	public void setSizelist(List <Size> sizelist) {
+	public void setSizelist(List<SizeCategory> sizelist) {
 		this.sizelist = sizelist;
 	}
 
-	public List <ShoesCategory> getCategorylist() {
+	public List<GenderCategory> getGenderlist() {
+		return genderlist;
+	}
+
+	public void setGenderlist(List<GenderCategory> genderlist) {
+		this.genderlist = genderlist;
+	}
+
+	public List<ShoesCategory> getCategorylist() {
 		return categorylist;
 	}
 
-	public void setCategorylist(List <ShoesCategory> categorylist) {
+	public void setCategorylist(List<ShoesCategory> categorylist) {
 		this.categorylist = categorylist;
 	}
 
@@ -226,5 +318,21 @@ public class Product implements Serializable{
 	public void setManufacturer(String manufacturer) {
 		this.manufacturer = manufacturer;
 	}
-	
+
+	public String getGender() {
+		return gender;
 	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public ShoeCategoryEntity getShoeentity() {
+		return shoeentity;
+	}
+
+	public void setShoeentity(ShoeCategoryEntity shoeentity) {
+		this.shoeentity = shoeentity;
+	}
+
+}

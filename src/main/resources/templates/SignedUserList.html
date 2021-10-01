@@ -14,6 +14,10 @@
 
 </head>
 <style>
+thead{
+background-color: green;
+color:white;
+}
 .navbar {
 	background-color: green;
 }
@@ -47,15 +51,16 @@
         <div th:switch="${users}" class="container my-5">
                 
       
-     <div class="container mt-5">
-     <h1>Search User </h1>
+     
+     <center><h1>Search User </h1>
     		 <form th:action="@{/signeduserlist/search}" method="get">
  			 <input type="text" name="email" th:value="${email}"  placeholder="Find by email id" size="50" >
   			 <button type="submit" class="btn btn-primary" >Search</button>
   			 <button type="submit" class="btn btn-primary" >Reset</button>
   			 </form>
-    </div>
-            <div class="col-md-10">
+    </center><br>
+    
+            <div class="col-lg-15">
                 <h2 th:case="null">No record found !!</h2>
                 <div th:case="*">
                     <table class="table table-striped table-responsive-md">

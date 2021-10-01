@@ -24,11 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.http.MediaType;
-import com.simplilearn.sportyshoes.model.Color;
-import com.simplilearn.sportyshoes.model.Gender;
+import com.simplilearn.sportyshoes.model.ColorCategory;
+import com.simplilearn.sportyshoes.model.GenderCategory;
 import com.simplilearn.sportyshoes.model.PurchaseOrder;
 import com.simplilearn.sportyshoes.model.ShoesCategory;
-import com.simplilearn.sportyshoes.model.Size;
+import com.simplilearn.sportyshoes.model.SizeCategory;
 import com.simplilearn.sportyshoes.service.ExcelService;
 import com.simplilearn.sportyshoes.service.ProductService;
 
@@ -41,13 +41,13 @@ public class PurchaseOrderController {
 
 	@RequestMapping(value = "/purchaseReport", method = RequestMethod.GET)
 	public String getPurchaseReport(PurchaseOrder purchaseOrder, Model model) {
-		List<Color> list = service.getColorList();
+		List<ColorCategory> list = service.getColorList();
 		purchaseOrder.setColorlist(list);
-		List<Size> sizelist = service.getSizeList();
+		List<SizeCategory> sizelist = service.getSizeList();
 		purchaseOrder.setSizelist(sizelist);
 		List<ShoesCategory> categorylist = service.getShoeTypeList();
 		purchaseOrder.setCategorylist(categorylist);
-		List<Gender> genderlist = service.getGenderList();
+		List<GenderCategory> genderlist = service.getGenderList();
 		purchaseOrder.setGenderlist(genderlist);
 		model.addAttribute("purchaseOrder", purchaseOrder);
 		return "purchase-report";

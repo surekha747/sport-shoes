@@ -6,18 +6,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.simplilearn.sportyshoes.model.Color;
-import com.simplilearn.sportyshoes.model.Gender;
+import com.simplilearn.sportyshoes.model.ColorCategory;
+import com.simplilearn.sportyshoes.model.GenderCategory;
+import com.simplilearn.sportyshoes.model.Product;
 import com.simplilearn.sportyshoes.model.ShoesCategory;
 import com.simplilearn.sportyshoes.model.SignedUsers;
-import com.simplilearn.sportyshoes.model.Size;
+import com.simplilearn.sportyshoes.model.SizeCategory;
 import com.simplilearn.sportyshoes.repository.ColorRepository;
 import com.simplilearn.sportyshoes.repository.GenderRepository;
+import com.simplilearn.sportyshoes.repository.ProductRepository;
 import com.simplilearn.sportyshoes.repository.ShoesCategoryRepository;
 import com.simplilearn.sportyshoes.repository.SizeRepository;
 
 @Service
 public class ProductService {
+	@Autowired
+	ProductRepository proeuctRepo;
 	@Autowired
 	ColorRepository repository;
 	@Autowired
@@ -27,29 +31,29 @@ public class ProductService {
 	@Autowired
 	GenderRepository repo;
 
-	public List<Color> getColorList() {
-		List<Color> list = (List<Color>) repository.findAll();
+	public List<ColorCategory> getColorList() {
+		List<ColorCategory> list = (List<ColorCategory>) repository.findAll();
 		if (list.size() > 0) {
 			return list;
 		} else {
-			return new ArrayList<Color>();
+			return new ArrayList<ColorCategory>();
 		}
 	}
 
-	public List<Size> getSizeList() {
-		List<Size> list = (List<Size>) sizerepository.findAll();
+	public List<SizeCategory> getSizeList() {
+		List<SizeCategory> list = (List<SizeCategory>) sizerepository.findAll();
 		if (list.size() > 0) {
 			return list;
 		} else {
-			return new ArrayList<Size>();
+			return new ArrayList<SizeCategory>();
 		}
 	}
-	public List<Gender> getGenderList() {
-		List<Gender> list = (List<Gender>) repo.findAll();
+	public List<GenderCategory> getGenderList() {
+		List<GenderCategory> list = (List<GenderCategory>) repo.findAll();
 		if (list.size() > 0) {
 			return list;
 		} else {
-			return new ArrayList<Gender>();
+			return new ArrayList<GenderCategory>();
 		}
 	}
 
@@ -61,5 +65,13 @@ public class ProductService {
 		} else {
 			return new ArrayList<ShoesCategory>();
 		}
+	}
+	public Product addProduct(Product product) {
+		return proeuctRepo.save(product);
+	}
+	
+	public List<Product> getProductList(){
+		return proeuctRepo.findAll();
+		
 	}
 }

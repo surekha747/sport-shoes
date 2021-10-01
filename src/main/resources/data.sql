@@ -73,7 +73,7 @@ insert into color(color_value)
 values('RED'),('YELLOW'),('GREEN'),('WHITE'),('BLACK'),('ORANGE'),('GRAY'),('PINK');
 insert into size(size_value) values('3'),('4'),('5'),('6'),('7'),('8'),('9'),('9.5');
 
-insert into gender(gender) values('MALE'),('FEMALE'),('UNISEX');
+insert into gender(gender) values('MALE'),('FEMALE'),('KIDS');
 
   
   

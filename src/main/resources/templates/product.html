@@ -10,10 +10,10 @@
 
 </head>
 <style>
-.btn{
-
-width:330px;
+.btn {
+	width: 330px;
 }
+
 input {
 	width: 15%;
 }
@@ -34,18 +34,22 @@ input {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Home
-					</a>
-					<a class="navbar-brand" th:href="@{/product}">Add New Product</a>
-					<a class="navbar-brand" th:href="@{/purchaseReport}">Purchase Report</a>
-					<a class="navbar-brand" th:href="@{/signeduserlist}">View Signed Users</a>
-					<a class="navbar-brand" th:href="@{/changepassword}">Change Password</a>
-					<a class="navbar-brand" th:href="@{/logout}">Logout</a>
-					
+				<a class="navbar-brand" href="#" th:href="@{/}">Home </a> <a
+					class="navbar-brand" th:href="@{/product}">Add New Product</a> <a
+					class="navbar-brand" th:href="@{/purchaseReport}">Purchase
+					Report</a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
+					Signed Users</a> <a class="navbar-brand" th:href="@{/changepassword}">Change
+					Password</a> <a class="navbar-brand" th:href="@{/logout}">Logout</a>
+
 			</div>
 		</div>
-	</nav><br><br>
-	<center><h1>Add New Product</h1></center><br>
+	</nav>
+	<br>
+	<br>
+	<center>
+		<h1>Add New Product</h1>
+	</center>
+	<br>
 
 	<form th:action="@{/product}" method="post" th:object="${product}">
 
@@ -55,100 +59,148 @@ input {
 				<option th:each="shoe : ${product.categorylist}"
 					th:value="${shoe.shoe_type}"
 					th:text="${shoe.id}+' : '+${shoe.shoe_type}"></option>
-			</select><br>
-			<label>Select Gender</label></br>
+			</select><br> <label>Select Gender</label></br>
 			<th:block th:each="gender : ${product.genderlist}">
-				<input type="checkbox" name="gender" id="gender" th:value="${gender.id}"/>
+				<input type="checkbox" name="gender" id="gender"
+					th:value="${gender.gender}" />
 				<label th:text="${gender.gender}"></label>
 				<br />
 			</th:block>
 		</div>
-		
-		
+
+
 		<div class="col-lg-2">
-		<label>Select Color(s)</label></br>
+			<label>Select Color(s)</label></br>
 			<th:block th:each="color : ${product.colorlist}">
-				<input type="checkbox" name="color" id="color" th:value="${color.id}"/>
+				<input type="checkbox" name="color" id="color"
+					th:value="${color.color_value}" />
 				<label th:text="${color.color_value}"></label>
 				<br />
 			</th:block>
 		</div>
 		<div class="col-lg-2">
-		<label>Select Size(s)</label></br>
+			<label>Select Size(s)</label></br>
 			<th:block th:each="size : ${product.sizelist}">
-				<input type="checkbox" name="size" id="size" th:value="${size.id}" />
+				<input type="checkbox" name="size" id="size" th:value="${size.size_value}" />
 				<label th:text="${size.size_value}"></label>
 				<br />
 			</th:block>
 		</div>
-	
-	<div class="form-row">
-        <div class="col-md-2 form-group">
-            <label>Product Name</label>
-            <input type="text" name="product_name" class="form-control" 
-            placeholder="Enter Product Name" autofocus="autofocus">
-        </div>
-        <div class="col-md-2 form-group">
-            <label>Brand Name</label>
-            <input type="text" name="brand_name" class="form-control" placeholder="Enter Brand Name" autofocus="autofocus">
-        </div>
-        <div class="col-md-2 form-group">
-            <label>Standard Price</label>
-              <input type="text" name="standard_price" class="form-control" placeholder="Enter Standard Price" autofocus="autofocus">
-        </div>
-        <div class="col-md-2 form-group">
-            <label>Maximum Retail Price</label>
-            <input type="text" name="maximum_retail_price" class="form-control"
-             placeholder="Enter Maximus Retail Price">
-        </div>
-        <div class="col-md-2 form-group">
-            <label>Offers</label>
-            <input type="text" name="offers" class="form-control"   placeholder="Enter Offers">
-        </div>
-        <div class="col-md-2 form-group">
-            <label>SKU</label>
-            <input type="text" name="sku"  placeholder="Enter SKU" class="form-control">
-        </div>
-         <div class="col-md-2 form-group">
-            <label>Product Enrichment</label>
-            <input type="text" name="product_enrichment"  placeholder="Enter product enrichment" class="form-control">
-        </div>
-         <div class="col-md-2 form-group">
-            <label>Keyword</label>
-            <input type="text" name="keyword"  placeholder="Enter Keyword" class="form-control">
-        </div>
-         <div class="col-md-2 form-group">
-            <label>Discount</label>
-            <input type="text" name="discount"  placeholder="Enter Discount" class="form-control">
-        </div>
-         <div class="col-md-2 form-group">
-            <label>Stock</label>
-            <input type="text" name="stock"  placeholder="Enter Stock" class="form-control">
-        </div>
-       
-        <div class="col-md-2 form-group">
-            <label>Manufacturer</label>
-            <input type="text" name="manufacturer"  placeholder="Enter Manufacturer" class="form-control">
-        </div>
-        <!--  Item Weight -->
-       <!--  <div class="col-md-3 form-group">
-        <label>Browse Image file</label>
-            <input class="form-control" name="image" type="file" id="formFile"><br/>
-        </div> -->
-    </div>
 
- 			
-        <br><br>
-						
-							<br><center>
-								<input type="submit" name="login-submit" id="login-submit"
-									class="btn btn-primary" value="SAVE" /></center>
-									
-							
-					
-					
+		<div class="form-row">
+			<div class="col-md-2 form-group">
+				<label>Product Name</label> <input type="text" name="product_name"
+					class="form-control" placeholder="Enter Product Name"
+					autofocus="autofocus">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Brand Name</label> <input type="text" name="brand_name"
+					class="form-control" placeholder="Enter Brand Name"
+					autofocus="autofocus">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Standard Price</label> <input type="text"
+					name="standard_price" class="form-control"
+					placeholder="Enter Standard Price" autofocus="autofocus">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Maximum Retail Price</label> <input type="text"
+					name="maximum_retail_price" class="form-control"
+					placeholder="Enter Maximus Retail Price">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Offers</label> <input type="text" name="offers"
+					class="form-control" placeholder="Enter Offers">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>SKU</label> <input type="text" name="sku"
+					placeholder="Enter SKU" class="form-control">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Product Enrichment</label> <input type="text"
+					name="product_enrichment" placeholder="Enter product enrichment"
+					class="form-control">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Keyword</label> <input type="text" name="keyword"
+					placeholder="Enter Keyword" class="form-control">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Discount</label> <input type="text" name="discount"
+					placeholder="Enter Discount" class="form-control">
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Browse Image file</label> <input class="form-control"
+					name="image" type="file" id="formFile"><br />
+			</div>
+			<div class="col-md-2 form-group">
+				<label>Stock</label> <input type="text" name="stock"
+					placeholder="Enter Stock" class="form-control">
+			</div>
+
+			<div class="col-md-2 form-group">
+				<label>Manufacturer</label> <input type="text" name="manufacturer"
+					placeholder="Enter Manufacturer" class="form-control">
+			</div>
+			<!--  Item Weight -->
+
+
+		</div>
+
+		<div class="form-row">
+			<input type="submit" name="login-submit" id="login-submit"
+				class="btn btn-primary" value="SAVE" />
+		</div>
 
 
 	</form>
+	<div class="container my-2">
+		<h1>Product List</h1>
+
+
+
+		<table border="1" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Product Name</th>
+					<th>Brand Name</th>
+					<th>Manufactured By</th>
+					<th>Standard Price</th>
+					<th>Maximum Retail Price</th>
+					<th>Offers</th>
+					<th>SKU</th>
+					<th>Product Enrichment</th>
+					<th>Keyword</th>
+					<th>Discount</th>
+					<th>Stock</th>
+					
+					<th>Gender</th>
+					<th>Color</th>
+					<th>Size</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product:${productlist}">
+					<td th:text="${product.product_name}"></td>
+					<td th:text="${product.brand_name}"></td>
+					<td th:text="${product.manufacturer}"></td>
+					<td th:text="${product.standard_price}"></td>
+					<td th:text="${product.maximum_retail_price}"></td>
+					<td th:text="${product.offers}"></td>
+					<td th:text="${product.sku}"></td>
+					<td th:text="${product.product_enrichment}"></td>
+					<td th:text="${product.keyword}"></td>
+					<td th:text="${product.discount}"></td>
+					<td th:text="${product.stock}"></td>
+					<td th:text="${product.gender}"></td>
+					<td th:text="${product.color}"></td>
+					<td th:text="${product.size}"></td>
+					<td>Update Delete</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
 </body>
 </html>

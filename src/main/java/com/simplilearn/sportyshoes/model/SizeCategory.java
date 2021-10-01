@@ -8,30 +8,28 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "color")
-public class Color {
+@Table(name="size")
+public class SizeCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
-	private String color_value;
-	/*
-	 * @Column private boolean active;
-	 */
-	
-	public String getColor_value() {
-		return color_value;
+	private String size_value;
+	public String getSize_value() {
+		return size_value;
 	}
-	
+	public void setSize_value(String size_value) {
+		this.size_value = size_value;
+	}
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public void setColor_value(String color_value) {
-		this.color_value = color_value;
-	}
+	
+	
+	
+	/*private String size_description;
+	private boolean active;*/
 }

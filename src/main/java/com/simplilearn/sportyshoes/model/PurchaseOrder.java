@@ -42,28 +42,28 @@ public class PurchaseOrder {
 	private String shoecategory;
 	
 	@Transient
-	private List<Color> colorlist;
+	private List<ColorCategory> colorlist;
 	@Transient
-	private List<Size> sizelist;
+	private List<SizeCategory> sizelist;
 	@Transient
 	private List<ShoesCategory> categorylist;
 	@Transient
-	private List<Gender> genderlist;
+	private List<GenderCategory> genderlist;
 
 
-	public List<Color> getColorlist() {
+	public List<ColorCategory> getColorlist() {
 		return colorlist;
 	}
 
-	public void setColorlist(List<Color> colorlist) {
+	public void setColorlist(List<ColorCategory> colorlist) {
 		this.colorlist = colorlist;
 	}
 
-	public List<Size> getSizelist() {
+	public List<SizeCategory> getSizelist() {
 		return sizelist;
 	}
 
-	public void setSizelist(List<Size> sizelist) {
+	public void setSizelist(List<SizeCategory> sizelist) {
 		this.sizelist = sizelist;
 	}
 
@@ -75,11 +75,11 @@ public class PurchaseOrder {
 		this.categorylist = categorylist;
 	}
 
-	public List<Gender> getGenderlist() {
+	public List<GenderCategory> getGenderlist() {
 		return genderlist;
 	}
 
-	public void setGenderlist(List<Gender> genderlist) {
+	public void setGenderlist(List<GenderCategory> genderlist) {
 		this.genderlist = genderlist;
 	}
 

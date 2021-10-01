@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="gender")
-public class Gender {
+public class GenderCategory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

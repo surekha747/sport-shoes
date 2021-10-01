@@ -1,12 +1,9 @@
 package com.simplilearn.sportyshoes.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.simplilearn.sportyshoes.model.Color;
-import com.simplilearn.sportyshoes.model.User;
+import com.simplilearn.sportyshoes.model.ColorCategory;
 
-public interface ColorRepository extends JpaRepository<Color, Long> {
-	
+public interface ColorRepository extends JpaRepository<ColorCategory, Long> {
+
 }
