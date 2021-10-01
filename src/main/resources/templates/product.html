@@ -7,7 +7,7 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <style>
 .btn {
@@ -48,11 +48,17 @@ input {
 	</nav>
 	<br>
 	<br>
+
+	
 	<center>
 		<h1>Add New Product</h1>
 	</center>
 	<br>
-
+	<!-- success message -->
+				<div th:if="${success}">
+					<div class="alert alert-info"><center><b>You've successfully Added Product</b></center>
+						</div>
+				</div>
 	<form th:action="@{/product}" method="post" th:object="${product}" enctype="multipart/form-data">
 
 		<div class="col-lg-2" th:object="${product.categorylist}">
@@ -133,8 +139,9 @@ input {
 			</div>
 			<div class="col-md-2 form-group">
 				<label>Browse Image file</label> <input class="form-control"
-					name="image" type="file" id="formFile" accept="image/png, image/jpeg">
-					<img id="thumbnail" alt="Logo Preview"/><br />
+					name="image" type="file" id="fileupload" accept="image/png, image/jpeg">
+					<img id="thumbnail" alt="Product Preview"/><br /><div id="dvPreview">
+</div>
 			</div>
 			<div class="col-md-2 form-group">
 				<label>Stock</label> <input type="text" name="stock"
@@ -157,11 +164,97 @@ input {
 
 
 	</form>
+	
+	
+	
+		<br><br><br>
 	<div class="container my-2">
-		
+		<h1>Product List</h1>
 
 
+
+		<table class="table table-bordered">
+			<thead>
+				<tr><th>Image File</th>
+					<th>Product Name</th>
+					<th>Brand Name</th>
+					<th>Manufacturer</th>
+					<th>Standard Price</th>
+					<th>MRP</th>
+					<th>Offers</th>
+					<th>SKU</th>
+					<th>Product Enrichment</th>
+					<th>Keyword</th>
+					<th>Discount</th>
+					<th>Stock</th>
+					
+					<th>Gender</th>
+					<th>Color</th>
+					<th>Size</th>
+					<th>Shoe Category</th>
+					<th>Add Item</th>
+					<th>Update</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product:${productlist}">
+				    
+				<td><img th:src="${product.photosImagePath}"/></td>
+					<td th:text="${product.product_name}"></td>
+					<td th:text="${product.brand_name}"></td>
+					<td th:text="${product.manufacturer}"></td>
+					<td th:text="${product.standard_price}"></td>
+					<td th:text="${product.maximum_retail_price}"></td>
+					<td th:text="${product.offers}"></td>
+					<td th:text="${product.sku}"></td>
+					<td th:text="${product.product_enrichment}"></td>
+					<td th:text="${product.keyword}"></td>
+					<td th:text="${product.discount}"></td>
+					<td th:text="${product.stock}"></td>
+					<td th:text="${product.gender}"></td>
+					<td th:text="${product.color}"></td>
+					<td th:text="${product.size}"></td>
+					<td th:text="${product.shoe_type}"></td>
+					<td><a class="navbar-brand" th:href="@{/product}"></a></td>
+					<td><a class="navbar-brand" th:href="@{/editproduct/{id}(id=${product.id})}">Update</a></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
+	
+
+	
+	
+<script language="javascript" type="text/javascript">
+$(function () {
+    $("#fileupload").change(function () {
+        if (typeof (FileReader) != "undefined") {
+            var dvPreview = $("#dvPreview");
+            dvPreview.html("");
+            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            $($(this)[0].files).each(function () {
+                var file = $(this);
+                if (regex.test(file[0].name.toLowerCase())) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = $("<img />");
+                        img.attr("style", "height:100px;width: 100px");
+                        img.attr("src", e.target.result);
+                        dvPreview.append(img);
+                    }
+                    reader.readAsDataURL(file[0]);
+                } else {
+                    alert(file[0].name + " is not a valid image file.");
+                    dvPreview.html("");
+                    return false;
+                }
+            });
+        } else {
+            alert("This browser does not support HTML5 FileReader.");
+        }
+    });
+});
+</script>
 </body>
 
 </html>

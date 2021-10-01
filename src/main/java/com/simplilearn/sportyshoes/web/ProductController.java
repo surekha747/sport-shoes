@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.simplilearn.sportyshoes.helper.FileUploadUtil;
 import com.simplilearn.sportyshoes.model.ColorCategory;
@@ -49,7 +49,8 @@ public class ProductController {
 	}
 	@RequestMapping(value = "/product", method = RequestMethod.POST,
 			consumes = {"multipart/form-data"} )
-	public String save(Product product,Model model,@RequestParam("image") MultipartFile multipartFile) throws IOException {
+	public String save(Product product,Model model,@RequestParam("image") MultipartFile multipartFile,RedirectAttributes redirAttrs)
+			throws IOException {
 		 String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		 product.setPhotos(fileName);
 		Product savedproduct=service.addProduct(product);
@@ -63,9 +64,14 @@ public class ProductController {
 		Product prod =service.getProductByid(savedproduct.getId());
 		prod.setPhotosImagePath(showdDir);
 		//service.getProductList()
-		model.addAttribute("productlist",prod);
-		return "productlist";
+		if(prod!=null) {
+			model.addAttribute("productlist",prod);
+			redirAttrs.addFlashAttribute("success", "Product Added Successfully.");
+		}
 		
+		
+		
+		return "redirect:/product?success";
 		
 		
 	}
