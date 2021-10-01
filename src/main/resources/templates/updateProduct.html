@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>Sports Shoes Application</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+<style>
+th{
+font-weight:10px;
+}
+.btn {
+	width: 330px;
+}
+
+input {
+	width: 15%;
+}
+
+.navbar {
+	background-color: green;
+}
+</style>
+<body>
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#" th:href="@{/}">Home </a> <a
+					class="navbar-brand" th:href="@{/product}">Add New Product</a> 
+					 <a class="navbar-brand" th:href="@{/viewproducts}">Product List</a>
+					<a
+					class="navbar-brand" th:href="@{/purchaseReport}">Purchase
+					Report</a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
+					Signed Users</a> <a class="navbar-brand" th:href="@{/changepassword}">Change
+					Password</a> <a class="navbar-brand" th:href="@{/logout}">Logout</a>
+
+			</div>
+		</div>
+	</nav>
+	<br>
+	<br>
+	<div th:if="${param.success}">
+					<div class="alert alert-info">You've successfully Changed Password!
+						</div>
+				</div>
+	<div class="container">
+        
+        <hr>
+        <h2>Update Product</h2>
+
+        <form action="#" th:action="@{/saveProduct}" th:object="${product}" method="POST">
+
+            <!-- Add hidden form field to handle update -->
+            <input type="hidden" th:field="*{id}" />
+
+            <input type="text" th:field="*{product_name}" class="form-control mb-2 col-2">
+
+            <input type="text" th:field="*{brand_name}" class="form-control mb-2 col-2">
+
+            <input type="text" th:field="*{standard_price}" class="form-control mb-2 col-2">
+            
+             <input type="text" th:field="*{maximum_retail_price}" class="form-control mb-2 col-2">
+
+            <input type="text" th:field="*{offers}" class="form-control mb-2 col-2">
+
+            <input type="text" th:field="*{sku}" class="form-control mb-2 col-2">
+            
+               <input type="text" th:field="*{product_enrichment}" class="form-control mb-2 col-2">
+
+            <input type="text" th:field="*{keyword}" class="form-control mb-2 col-2">
+               <input type="text" th:field="*{discount}" class="form-control mb-2 col-2">
+            
+               <input type="text" th:field="*{stock}" class="form-control mb-2 col-2">
+
+            <input type="text" th:field="*{manufacturer}" class="form-control mb-2 col-2">
+            
+             <input type="text" th:field="*{gender}" class="form-control mb-2 col-2">
+              <input type="text" th:field="*{color}" class="form-control mb-2 col-2">
+               <input type="text" th:field="*{size}" class="form-control mb-2 col-2">
+                <input type="text" th:field="*{shoe_type}" class="form-control mb-2 col-2">
+
+            <button type="submit" class="btn btn-primary"> Update Product</button>
+        </form>
+
+        <hr>
+<div class="container my-2">
+		<h1>Product List</h1>
+
+
+
+		<table border="0" class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Product Name</th>
+					<th>Brand Name</th>
+					<th>Manufacturer</th>
+					<th>Standard Price</th>
+					<th>MRP</th>
+					<th>Offers</th>
+					<th>SKU</th>
+					<th>Product Enrichment</th>
+					<th>Keyword</th>
+					<th>Discount</th>
+					<th>Stock</th>
+					
+					<th>Gender</th>
+					<th>Color</th>
+					<th>Size</th>
+					<th>Shoe Category</th>
+					<th>Add Item</th>
+					<th>Update</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product:${productlist}">
+					<td th:text="${product.product_name}"></td>
+					<td th:text="${product.brand_name}"></td>
+					<td th:text="${product.manufacturer}"></td>
+					<td th:text="${product.standard_price}"></td>
+					<td th:text="${product.maximum_retail_price}"></td>
+					<td th:text="${product.offers}"></td>
+					<td th:text="${product.sku}"></td>
+					<td th:text="${product.product_enrichment}"></td>
+					<td th:text="${product.keyword}"></td>
+					<td th:text="${product.discount}"></td>
+					<td th:text="${product.stock}"></td>
+					<td th:text="${product.gender}"></td>
+					<td th:text="${product.color}"></td>
+					<td th:text="${product.size}"></td>
+					<td th:text="${product.shoe_type}"></td>
+					<td><a class="navbar-brand" th:href="@{/product}"></a></td>
+					<td><a class="navbar-brand" th:href="@{/editproduct/{id}(id=${product.id})}">Update</a></td>
+				</tr>
+			</tbody>
+		</table>
+      
+
+    </div>
+		
+
+	
+	
+
+
+
+
+	
+</body>
+
+</html>

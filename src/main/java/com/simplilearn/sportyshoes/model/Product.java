@@ -30,7 +30,7 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long prod_id;
+	private Long id;
 	@Column
 	private String product_name;
 	@Column
@@ -59,57 +59,53 @@ public class Product implements Serializable {
 	private String color;
 	@Column
 	private String size;
+	@Column
+	private String status;
+	@Column
+	private String photos;
 	
-	public String getColor() {
-		return color;
+	private String photosImagePath;
+	
+	public String getPhotos() {
+		return photos;
 	}
-
-	public void setColor(String color) {
-		this.color = color;
+	public void setPhotos(String photos) {
+		this.photos = photos;
 	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
-	public Product(String product_name, String brand_name, String manufacturer, Double standard_price,
-			Double maximum_retail_price, String offers, String sku, String product_enrichment, String keyword,
-			String discount, Long stock, String gender, String color, String size, ShoeCategoryEntity shoeentity,
-			List<SizeEntity> sizeentity, List<ColorCategory> colorlist, List<SizeCategory> sizelist,
-			List<ShoesCategory> categorylist, List<GenderCategory> genderlist, List<Image> imagelist) {
-		super();
-		this.product_name = product_name;
-		this.brand_name = brand_name;
-		this.manufacturer = manufacturer;
-		this.standard_price = standard_price;
-		this.maximum_retail_price = maximum_retail_price;
-		this.offers = offers;
-		this.sku = sku;
-		this.product_enrichment = product_enrichment;
-		this.keyword = keyword;
-		this.discount = discount;
-		this.stock = stock;
-		this.gender = gender;
-		this.color = color;
-		this.size = size;
-		this.shoeentity = shoeentity;
-		this.sizeentity = sizeentity;
-		this.colorlist = colorlist;
-		this.sizelist = sizelist;
-		this.categorylist = categorylist;
-		this.genderlist = genderlist;
-		this.imagelist = imagelist;
-	}
-
+	@Column
+	private String shoe_type;
+	
+	@Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/user-photos/" + id + "/" + photos;
+	    }
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@ManyToOne
+	private ShoeCategoryEntity shoeentity;
+	
+	@OneToMany(mappedBy ="product")
+	private List<SizeEntity> sizeentity;
+	
+	
+	@Transient
+	private List<ColorCategory> colorlist;
+	@Transient
+	private List<SizeCategory> sizelist;
 
+	@Transient
+	private List<ShoesCategory> categorylist;
+
+	@Transient
+	private List<GenderCategory> genderlist;
+
+	@Transient
+	private List<Image> imagelist;
+	
 	public List<SizeEntity> getSizeentity() {
 		return sizeentity;
 	}
@@ -117,39 +113,6 @@ public class Product implements Serializable {
 	public void setSizeentity(List<SizeEntity> sizeentity) {
 		this.sizeentity = sizeentity;
 	}
-
-	public Product(String product_name, String brand_name, String manufacturer, Double standard_price,
-			Double maximum_retail_price, String offers, String sku, String product_enrichment, String keyword,
-			String discount, Long stock, String gender, ShoeCategoryEntity shoeentity, List<SizeEntity> sizeentity,
-			List<ColorCategory> colorlist, List<SizeCategory> sizelist, List<ShoesCategory> categorylist,
-			List<GenderCategory> genderlist, List<Image> imagelist) {
-		super();
-		this.product_name = product_name;
-		this.brand_name = brand_name;
-		this.manufacturer = manufacturer;
-		this.standard_price = standard_price;
-		this.maximum_retail_price = maximum_retail_price;
-		this.offers = offers;
-		this.sku = sku;
-		this.product_enrichment = product_enrichment;
-		this.keyword = keyword;
-		this.discount = discount;
-		this.stock = stock;
-		this.gender = gender;
-		this.shoeentity = shoeentity;
-		this.sizeentity = sizeentity;
-		this.colorlist = colorlist;
-		this.sizelist = sizelist;
-		this.categorylist = categorylist;
-		this.genderlist = genderlist;
-		this.imagelist = imagelist;
-	}
-
-	@ManyToOne
-	private ShoeCategoryEntity shoeentity;
-	
-	@OneToMany(mappedBy ="product")
-	private List<SizeEntity> sizeentity;
 	
 	public String getDiscount() {
 		return discount;
@@ -167,21 +130,7 @@ public class Product implements Serializable {
 		this.keyword = keyword;
 	}
 
-	@Transient
-	private List<ColorCategory> colorlist;
-	@Transient
-	private List<SizeCategory> sizelist;
-
-	@Transient
-	private List<ShoesCategory> categorylist;
-
-	@Transient
-	private List<GenderCategory> genderlist;
-
-	@Transient
-	private List<Image> imagelist;
-
-	public List<Image> getImagelist() {
+		public List<Image> getImagelist() {
 		return imagelist;
 	}
 
@@ -189,29 +138,17 @@ public class Product implements Serializable {
 		this.imagelist = imagelist;
 	}
 
-	public Long getProd_id() {
-		return prod_id;
+	public Long getId() {
+		return id;
 	}
 
-	public void setProd_id(Long prod_id) {
-		this.prod_id = prod_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	
 
-	public Product(String product_name, String brand_name, Double standard_price, Double maximum_retail_price,
-			String offers, String sku, String product_enrichment, Long stock) {
-		super();
-		this.product_name = product_name;
-		this.brand_name = brand_name;
-		this.standard_price = standard_price;
-		this.maximum_retail_price = maximum_retail_price;
-		this.offers = offers;
-		this.sku = sku;
-		this.product_enrichment = product_enrichment;
-		this.stock = stock;
-		
-	}
+
 
 	public String getProduct_name() {
 		return product_name;
@@ -260,7 +197,6 @@ public class Product implements Serializable {
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
-
 	public String getProduct_enrichment() {
 		return product_enrichment;
 	}
@@ -277,6 +213,29 @@ public class Product implements Serializable {
 		this.stock = stock;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
 
 
 	public List<ColorCategory> getColorlist() {
@@ -334,5 +293,52 @@ public class Product implements Serializable {
 	public void setShoeentity(ShoeCategoryEntity shoeentity) {
 		this.shoeentity = shoeentity;
 	}
+
+	public Product(Long id,String product_name, String brand_name, String manufacturer, Double standard_price,
+			Double maximum_retail_price, String offers, String sku, String product_enrichment, String keyword,
+			String discount, Long stock, String gender,String photos, String color, String shoe_type,String size, String status,
+			ShoeCategoryEntity shoeentity, List<SizeEntity> sizeentity) {
+		super();
+		this.id=id;
+		this.shoe_type=shoe_type;
+		this.product_name = product_name;
+		this.brand_name = brand_name;
+		this.manufacturer = manufacturer;
+		this.standard_price = standard_price;
+		this.maximum_retail_price = maximum_retail_price;
+		this.offers = offers;
+		this.sku = sku;
+		this.product_enrichment = product_enrichment;
+		this.keyword = keyword;
+		this.discount = discount;
+		this.stock = stock;
+		this.gender = gender;
+		this.color = color;
+		this.size = size;
+		this.status = status;
+		this.shoeentity = shoeentity;
+		this.sizeentity = sizeentity;
+		this.photos=photos;
+		
+		
+	}
+
+
+
+	public String getShoe_type() {
+		return shoe_type;
+	}
+
+	public void setShoe_type(String shoe_type) {
+		this.shoe_type = shoe_type;
+	}
+	public void setPhotosImagePath(String photosImagePath) {
+		this.photosImagePath = photosImagePath;
+	}
+	
+
+	
+
+	
 
 }
