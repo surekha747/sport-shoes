@@ -1,7 +1,4 @@
 package com.simplilearn.sportyshoes.dto;
-
-
-
 public class UserRegistrationDto {
 	private String firstName;
 	private String lastName;

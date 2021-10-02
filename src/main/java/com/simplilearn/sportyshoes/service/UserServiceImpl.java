@@ -19,7 +19,6 @@ import com.simplilearn.sportyshoes.model.User;
 import com.simplilearn.sportyshoes.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
-	
 	private UserRepository userRepository;
 
 	@Autowired

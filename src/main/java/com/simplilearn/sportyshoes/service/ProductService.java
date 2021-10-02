@@ -3,7 +3,6 @@ package com.simplilearn.sportyshoes.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,6 +48,7 @@ public class ProductService {
 			return new ArrayList<SizeCategory>();
 		}
 	}
+
 	public List<GenderCategory> getGenderList() {
 		List<GenderCategory> list = (List<GenderCategory>) repo.findAll();
 		if (list.size() > 0) {
@@ -58,7 +58,6 @@ public class ProductService {
 		}
 	}
 
-
 	public List<ShoesCategory> getShoeTypeList() {
 		List<ShoesCategory> list = (List<ShoesCategory>) shoerepository.findAll();
 		if (list.size() > 0) {
@@ -67,27 +66,25 @@ public class ProductService {
 			return new ArrayList<ShoesCategory>();
 		}
 	}
+
 	public Product addProduct(Product product) {
 		return proeuctRepo.save(product);
 	}
-	
-	public List<Product> getProductList(){
-		return proeuctRepo.findAll();
-		
-	}
 
-	
+	public List<Product> getProductList() {
+		return proeuctRepo.findAll();
+
+	}
 
 	public Product getProductByid(Long id) {
-		Optional < Product > optional = proeuctRepo.findById(id);
+		Optional<Product> optional = proeuctRepo.findById(id);
 		Product product = null;
-        if (optional.isPresent()) {
-        	product = optional.get();
-        } else {
-            throw new RuntimeException(" Product not found for id :: " +id);
-        }
-        return product;
+		if (optional.isPresent()) {
+			product = optional.get();
+		} else {
+			throw new RuntimeException(" Product not found for id :: " + id);
+		}
+		return product;
 	}
 
-	
 }

@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
  * @author Surekha 
  * @since 30-09-2021
  */
-
 @Configuration
 public class StringToSqlDateConvertor extends DozerConverter<String, Date> {
 

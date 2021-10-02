@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.simplilearn.sportyshoes.dto.UserRegistrationDto;
 import com.simplilearn.sportyshoes.service.UserService;
-
 @Controller
 public class HomeController {
 	private UserService userService;

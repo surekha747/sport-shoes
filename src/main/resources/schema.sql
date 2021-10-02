@@ -8,6 +8,7 @@ CREATE TABLE signedup_users(
   address VARCHAR(250) DEFAULT NULL
 );
 DROP TABLE IF EXISTS user;
+ 
   
 CREATE TABLE user (
   id INT AUTO_INCREMENT  PRIMARY KEY,

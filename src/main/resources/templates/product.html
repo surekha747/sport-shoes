@@ -7,9 +7,27 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <style>
+img{
+width:120Px;
+height:120px;
+}
+
+td{display:block;float:left;width:60%;}
+
+table, th, td {
+margin-left:20%;
+border: none;
+border-collapse: collapse;
+width:60%;
+}
+th, td {
+padding: 5px;
+text-align: left;
+}
 .btn {
 	width: 330px;
 }
@@ -20,6 +38,13 @@ input {
 
 .navbar {
 	background-color: green;
+}
+
+.row {
+	margin-left: 4%;
+	margin-right: 4%;
+	border: 3px solid gray;
+	border-radius: 3px;
 }
 </style>
 <body>
@@ -34,227 +59,238 @@ input {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Home </a> <a
-					class="navbar-brand" th:href="@{/product}">Add New Product</a> 
-					 <a class="navbar-brand" th:href="@{/viewproducts}">Product List</a>
+				<a class="navbar-brand" href="#" th:href="@{/}"><span class="glyphicon glyphicon-home"></span> Home </a> <a
+					class="navbar-brand" th:href="@{/product}"> <span class="glyphicon glyphicon-save"></span> Add New Product</a> 
+					 <a class="navbar-brand" th:href="@{/viewproducts}"> <span class="glyphicon glyphicon-th-list"></span> Product List</a>
 					<a
 					class="navbar-brand" th:href="@{/purchaseReport}">Purchase
-					Report</a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
-					Signed Users</a> <a class="navbar-brand" th:href="@{/changepassword}">Change
+					Report  <span class="glyphicon glyphicon-download-alt"></span></a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
+					Signed Users <span class="glyphicon glyphicon-search"></span></a> <a class="navbar-brand" th:href="@{/changepassword}">Change
 					Password</a> <a class="navbar-brand" th:href="@{/logout}">Logout</a>
 
 			</div>
 		</div>
 	</nav>
-	<br>
-	<br>
-
 	
+
+
 	<center>
-		<h1>Add New Product</h1>
+	<br>
+	<br><br>
+	<br>
+		<h3>Add New Product</h3>
 	</center>
 	<br>
-	<!-- success message -->
-				<div th:if="${success}">
-					<div class="alert alert-info"><center><b>You've successfully Added Product</b></center>
-						</div>
+	
+		<!-- success message -->
+		<div th:if="${success}">
+			<div class="alert alert-info">
+				<center>
+					<b>You've successfully Added Product</b>
+				</center>
+			</div>
+		</div>
+		<form th:action="@{/product}" method="post" th:object="${product}"
+			enctype="multipart/form-data">
+			<br>
+			<div class="row"><br>
+			<div class="form-row">
+				<div class="col-md-2 form-group">
+					<label>Product Name</label> <input type="text" name="product_name"
+						class="form-control" placeholder="Enter Product Name"
+						autofocus="autofocus">
 				</div>
-	<form th:action="@{/product}" method="post" th:object="${product}" enctype="multipart/form-data">
+				<div class="col-md-2 form-group">
+					<label>Brand Name</label> <input type="text" name="brand_name"
+						class="form-control" placeholder="Enter Brand Name"
+						autofocus="autofocus">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Standard Price</label> <input type="text"
+						name="standard_price" class="form-control"
+						placeholder="Enter Standard Price" autofocus="autofocus">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Maximum Retail Price</label> <input type="text"
+						name="maximum_retail_price" class="form-control"
+						placeholder="Enter Maximus Retail Price">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Offers</label> <input type="text" name="offers"
+						class="form-control" placeholder="Enter Offers">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>SKU</label> <input type="text" name="sku"
+						placeholder="Enter SKU" class="form-control">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Product Enrichment</label> <input type="text"
+						name="product_enrichment" placeholder="Enter product enrichment"
+						class="form-control">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Keyword</label> <input type="text" name="keyword"
+						placeholder="Enter Keyword" class="form-control">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Discount</label> <input type="text" name="discount"
+						placeholder="Enter Discount" class="form-control">
+				</div>
+				
+				<div class="col-md-2 form-group">
+					<label>Stock</label> <input type="text" name="stock"
+						placeholder="Enter Stock" class="form-control">
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Browse Image file</label> <input class="form-control"
+						name="image" type="file" id="fileupload"
+						accept="image/png, image/jpeg"> 
+					
+				</div>
+				<div class="col-md-2 form-group">
+					<label>Manufacturer</label> <input type="text" name="manufacturer"
+						placeholder="Enter Manufacturer" class="form-control">
+				</div>
+				<!--  Item Weight -->
+				<div class="col-md-2 form-group">
+					
+						<select id="size" name=size multiple class="form-control">
+								<option value="">Select Size</option>
+								<option th:each="size : ${product.sizelist}"
+									th:value="${size.size_value}"
+									th:text="${size.id}+' : '+${size.size_value}"></option>
+							</select>
+				</div>
+				<div class="col-md-2 form-group">
+					
+						<select id="color" name=color multiple class="form-control">
+								<option value="">Select Color</option>
+								<option th:each="color : ${product.colorlist}"
+									th:value="${color.color_value}"
+									th:text="${color.id}+':'+${color.color_value}"></option>
+							</select>
+				</div>
+				<div class="col-md-2 form-group">
+							<select id="gender" name=gender multiple class="form-control">
+								<option value="">Select Gender</option>
+								<option th:each="gender : ${product.genderlist}"
+									th:value="${gender.gender}"
+									th:text="${gender.id}+' : '+${gender.gender}"></option>
+							</select>
+						
+				</div>
+				<div class="col-md-2 form-group">
+				
+							<select id="id" name=shoe_type class="form-control">
+								<option value="">Select Shoe Category</option>
+								<option th:each="shoe : ${product.categorylist}"
+									th:value="${shoe.shoe_type}"
+									th:text="${shoe.id}+' : '+${shoe.shoe_type}"></option>
+							</select>
+					
+				</div>
+				<div class="col-md-2 form-group">
+					<div id="dvPreview"></div>
+				</div>
+				
 
-		<div class="col-lg-2" th:object="${product.categorylist}">
-			<select class="form-control" id="id" name=shoe_type>
-				<option value="">Select Shoe Category</option>
-				<option th:each="shoe : ${product.categorylist}"
-					th:value="${shoe.shoe_type}"
-					th:text="${shoe.id}+' : '+${shoe.shoe_type}"></option>
-			</select><br> <label>Select Gender</label></br>
-			<th:block th:each="gender : ${product.genderlist}">
-				<input type="checkbox" name="gender" id="gender"
-					th:value="${gender.gender}" />
-				<label th:text="${gender.gender}"></label>
-				<br />
-			</th:block>
-		</div>
-
-
-		<div class="col-lg-2">
-			<label>Select Color(s)</label></br>
-			<th:block th:each="color : ${product.colorlist}">
-				<input type="checkbox" name="color" id="color"
-					th:value="${color.color_value}" />
-				<label th:text="${color.color_value}"></label>
-				<br />
-			</th:block>
-		</div>
-		<div class="col-lg-2">
-			<label>Select Size(s)</label></br>
-			<th:block th:each="size : ${product.sizelist}">
-				<input type="checkbox" name="size" id="size" th:value="${size.size_value}" />
-				<label th:text="${size.size_value}"></label>
-				<br />
-			</th:block>
-		</div>
-
-		<div class="form-row">
-			<div class="col-md-2 form-group">
-				<label>Product Name</label> <input type="text" name="product_name"
-					class="form-control" placeholder="Enter Product Name"
-					autofocus="autofocus">
 			</div>
-			<div class="col-md-2 form-group">
-				<label>Brand Name</label> <input type="text" name="brand_name"
-					class="form-control" placeholder="Enter Brand Name"
-					autofocus="autofocus">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Standard Price</label> <input type="text"
-					name="standard_price" class="form-control"
-					placeholder="Enter Standard Price" autofocus="autofocus">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Maximum Retail Price</label> <input type="text"
-					name="maximum_retail_price" class="form-control"
-					placeholder="Enter Maximus Retail Price">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Offers</label> <input type="text" name="offers"
-					class="form-control" placeholder="Enter Offers">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>SKU</label> <input type="text" name="sku"
-					placeholder="Enter SKU" class="form-control">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Product Enrichment</label> <input type="text"
-					name="product_enrichment" placeholder="Enter product enrichment"
-					class="form-control">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Keyword</label> <input type="text" name="keyword"
-					placeholder="Enter Keyword" class="form-control">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Discount</label> <input type="text" name="discount"
-					placeholder="Enter Discount" class="form-control">
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Browse Image file</label> <input class="form-control"
-					name="image" type="file" id="fileupload" accept="image/png, image/jpeg">
-					<img id="thumbnail" alt="Product Preview"/><br /><div id="dvPreview">
 </div>
-			</div>
-			<div class="col-md-2 form-group">
-				<label>Stock</label> <input type="text" name="stock"
-					placeholder="Enter Stock" class="form-control">
-			</div>
+			<br>
+			
 
-			<div class="col-md-2 form-group">
-				<label>Manufacturer</label> <input type="text" name="manufacturer"
-					placeholder="Enter Manufacturer" class="form-control">
-			</div>
-			<!--  Item Weight -->
+<center><input type="submit" name="login-submit" id="login-submit"
+					class="btn btn-primary" value="SAVE" /></center>
+		</form>
 
 
-		</div>
-
-		<div class="form-row">
-			<input type="submit" name="login-submit" id="login-submit"
-				class="btn btn-primary" value="SAVE" />
-		</div>
-
-
-	</form>
-	
-	
-	
-		<br><br><br>
-	<div class="container my-2">
+	<div id="dvPreview"></div>
+	<br>
+	<br>
+	<br>
+<!-- 	<div class="container my-2">
 		<h1>Product List</h1>
 
 
 
-		<table class="table table-bordered">
-			<thead>
-				<tr><th>Image File</th>
-					<th>Product Name</th>
-					<th>Brand Name</th>
-					<th>Manufacturer</th>
-					<th>Standard Price</th>
-					<th>MRP</th>
-					<th>Offers</th>
-					<th>SKU</th>
-					<th>Product Enrichment</th>
-					<th>Keyword</th>
-					<th>Discount</th>
-					<th>Stock</th>
-					
-					<th>Gender</th>
-					<th>Color</th>
-					<th>Size</th>
-					<th>Shoe Category</th>
-					<th>Add Item</th>
-					<th>Update</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="product:${productlist}">
-				    
-				<td><img th:src="${product.photosImagePath}"/></td>
-					<td th:text="${product.product_name}"></td>
-					<td th:text="${product.brand_name}"></td>
-					<td th:text="${product.manufacturer}"></td>
-					<td th:text="${product.standard_price}"></td>
-					<td th:text="${product.maximum_retail_price}"></td>
-					<td th:text="${product.offers}"></td>
-					<td th:text="${product.sku}"></td>
-					<td th:text="${product.product_enrichment}"></td>
-					<td th:text="${product.keyword}"></td>
-					<td th:text="${product.discount}"></td>
-					<td th:text="${product.stock}"></td>
-					<td th:text="${product.gender}"></td>
-					<td th:text="${product.color}"></td>
-					<td th:text="${product.size}"></td>
-					<td th:text="${product.shoe_type}"></td>
-					<td><a class="navbar-brand" th:href="@{/product}"></a></td>
-					<td><a class="navbar-brand" th:href="@{/editproduct/{id}(id=${product.id})}">Update</a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
+		<table>
 
-	
-	
-<script language="javascript" type="text/javascript">
-$(function () {
-    $("#fileupload").change(function () {
-        if (typeof (FileReader) != "undefined") {
-            var dvPreview = $("#dvPreview");
-            dvPreview.html("");
-            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-            $($(this)[0].files).each(function () {
-                var file = $(this);
-                if (regex.test(file[0].name.toLowerCase())) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var img = $("<img />");
-                        img.attr("style", "height:100px;width: 100px");
-                        img.attr("src", e.target.result);
-                        dvPreview.append(img);
-                    }
-                    reader.readAsDataURL(file[0]);
-                } else {
-                    alert(file[0].name + " is not a valid image file.");
-                    dvPreview.html("");
-                    return false;
-                }
-            });
-        } else {
-            alert("This browser does not support HTML5 FileReader.");
-        }
-    });
-});
-</script>
+			
+				<tr th:each="product:${productlist}">
+
+					<td><img th:src="${product.photosImagePath}"/></td>
+					<td th:text="'Product Name : '+${product.product_name}"></td>
+					<td th:text="'Brand Name : '+${product.brand_name}"></td>
+					<td th:text="'Manufacturer : '+${product.manufacturer}"></td>
+					<td th:text="'Standard Price : '+${product.standard_price}"></td>
+					<td th:text="'MRP : '+${product.maximum_retail_price}"></td>
+					<td th:text="'Offers: '+${product.offers}"></td>
+					<td th:text="'SKU: '+${product.sku}"></td>
+					<td th:text="'Product Enrichment: '+${product.product_enrichment}"></td>
+					<td th:text="'Keyword : '+${product.keyword}"></td>
+					<td th:text="'Discount : '+${product.discount}"></td>
+					<td th:text="'Stock : '+${product.stock}"></td>
+					<td th:text="'Gender : '+${product.gender}"></td>
+					<td th:text="'Color: '+${product.color}"></td>
+					<td th:text="'Size : '+${product.size}"></td>
+					<td th:text="'Shoe Category: '+${product.shoe_type}"></td>
+					
+					<td><a class="navbar-brand"
+						th:href="@{/editproduct/{id}(id=${product.id})}">Update</a></td>
+				</tr>
+			
+		</table> -->
+	</div>
+
+
+
+
+	<script language="javascript" type="text/javascript">
+		$(function() {
+			$("#fileupload")
+					.change(
+							function() {
+								if (typeof (FileReader) != "undefined") {
+									var dvPreview = $("#dvPreview");
+									dvPreview.html("");
+									var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+									$($(this)[0].files)
+											.each(
+													function() {
+														var file = $(this);
+														if (regex
+																.test(file[0].name
+																		.toLowerCase())) {
+															var reader = new FileReader();
+															reader.onload = function(
+																	e) {
+																var img = $("<img />");
+																img
+																		.attr(
+																				"style",
+																				"height:100px;width: 100px");
+																img
+																		.attr(
+																				"src",
+																				e.target.result);
+																dvPreview
+																		.append(img);
+															}
+															reader
+																	.readAsDataURL(file[0]);
+														} else {
+															alert(file[0].name
+																	+ " is not a valid image file.");
+															dvPreview.html("");
+															return false;
+														}
+													});
+								} else {
+									alert("This browser does not support HTML5 FileReader.");
+								}
+							});
+		});
+	</script>
 </body>
 
 </html>

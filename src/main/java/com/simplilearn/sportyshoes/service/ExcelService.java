@@ -22,8 +22,7 @@ public class ExcelService {
 	@Autowired
 	StringToSqlDateConvertor stringTodate;
 	List<PurchaseOrder> porder = null;
-
-	public ByteArrayInputStream load(String shoe_type, String fromDate, String toDate) {
+public ByteArrayInputStream load(String shoe_type, String fromDate, String toDate) {
 		if (shoe_type != null && fromDate != null && toDate != null) {
 			porder = repo.findAllByShoecategoryAndOrderdateBetween(shoe_type, stringTodate.convertTo(fromDate),
 					stringTodate.convertTo(toDate));

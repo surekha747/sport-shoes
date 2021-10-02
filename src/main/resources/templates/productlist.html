@@ -10,6 +10,25 @@
 
 </head>
 <style>
+td{display:block;float:left;width:60%;
+}
+
+.row {
+width:40%;
+padding-left:10px;
+padding-top:10px;
+padding-bottom:10px;
+padding-right:10px;
+	
+/* 	border: 3px solid gray;
+	border-radius: 3px;
+ */}
+img{
+width:120Px;
+height:120px;
+}
+table{
+margin-left:40%;}
 th{
 font-weight:10px;
 }
@@ -27,7 +46,6 @@ input {
 </style>
 <body>
 	<!-- create navigation bar ( header) -->
-	<!-- create navigation bar ( header) -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -38,13 +56,13 @@ input {
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Home </a> <a
-					class="navbar-brand" th:href="@{/product}">Add New Product</a> 
-					 <a class="navbar-brand" th:href="@{/viewproducts}">Product List</a>
+				<a class="navbar-brand" href="#" th:href="@{/}"><span class="glyphicon glyphicon-home"></span> Home </a> <a
+					class="navbar-brand" th:href="@{/product}"> <span class="glyphicon glyphicon-save"></span> Add New Product</a> 
+					 <a class="navbar-brand" th:href="@{/viewproducts}"> <span class="glyphicon glyphicon-th-list"></span> Product List</a>
 					<a
 					class="navbar-brand" th:href="@{/purchaseReport}">Purchase
-					Report</a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
-					Signed Users</a> <a class="navbar-brand" th:href="@{/changepassword}">Change
+					Report  <span class="glyphicon glyphicon-download-alt"></span></a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
+					Signed Users <span class="glyphicon glyphicon-search"></span></a> <a class="navbar-brand" th:href="@{/changepassword}">Change
 					Password</a> <a class="navbar-brand" th:href="@{/logout}">Logout</a>
 
 			</div>
@@ -53,14 +71,40 @@ input {
 	<br>
 	<br>
 	<center>
-		
+		<br>
 
-	<div class="container my-2">
+	<div class="row">
 		<h1>Product List</h1>
+<table>
 
+			
+				<tr th:each="product:${productlist}">
 
+					<td><img th:src="${product.photosImagePath}"/></td>
+					<td th:text="'Product Name : '+${product.product_name}"></td>
+					<td th:text="'Brand Name : '+${product.brand_name}"></td>
+					<td th:text="'Manufacturer : '+${product.manufacturer}"></td>
+					<td th:text="'Standard Price : '+${product.standard_price}"></td>
+					<td th:text="'MRP : '+${product.maximum_retail_price}"></td>
+					<td th:text="'Offers: '+${product.offers}"></td>
+					<td th:text="'SKU: '+${product.sku}"></td>
+					<td th:text="'Product Enrichment: '+${product.product_enrichment}"></td>
+					<td th:text="'Keyword : '+${product.keyword}"></td>
+					<td th:text="'Discount : '+${product.discount}"></td>
+					<td th:text="'Stock : '+${product.stock}"></td>
+					<td th:text="'Gender : '+${product.gender}"></td>
+					<td th:text="'Color: '+${product.color}"></td>
+					<td th:text="'Size : '+${product.size}"></td>
+					<td th:text="'Shoe Category: '+${product.shoe_type}"></td>
+					<td th:text="'image: '+${product.photos}"></td>
+					<td><a class="btn btn-primary"
+						th:href="@{/editproduct/{id}(id=${product.id})}">Update</a></td>
+				</tr>
+			
+		</table>
+</div>
 
-		<table border="0" class="table table-striped table-responsive-md">
+	<!-- 	<table border="0" class="table table-striped table-responsive-md">
 			<thead>
 				<tr><th>Image File</th>
 					<th>Product Name</th>
@@ -106,8 +150,8 @@ input {
 					<td><a class="navbar-brand" th:href="@{/editproduct/{id}(id=${product.id})}">Update</a></td>
 				</tr>
 			</tbody>
-		</table>
-	</div>
+		</table> -->
+	
 </body>
 
 </html>

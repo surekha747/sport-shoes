@@ -18,7 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -63,7 +62,7 @@ public class Product implements Serializable {
 	private String status;
 	@Column
 	private String photos;
-	
+	@Column
 	private String photosImagePath;
 	
 	public String getPhotos() {
@@ -75,7 +74,7 @@ public class Product implements Serializable {
 	@Column
 	private String shoe_type;
 	
-	@Transient
+	
 	    public String getPhotosImagePath() {
 	        if (photos == null || id == null) return null;
 	         

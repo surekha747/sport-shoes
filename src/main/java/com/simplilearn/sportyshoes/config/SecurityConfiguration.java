@@ -13,8 +13,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.simplilearn.sportyshoes.service.UserService;
 
-
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {

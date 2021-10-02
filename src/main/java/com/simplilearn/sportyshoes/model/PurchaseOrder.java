@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 //purchase_orders
 @Entity
 @Table(name="purchase_orders")

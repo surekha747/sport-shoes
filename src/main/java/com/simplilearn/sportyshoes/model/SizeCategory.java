@@ -1,5 +1,4 @@
 package com.simplilearn.sportyshoes.model;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

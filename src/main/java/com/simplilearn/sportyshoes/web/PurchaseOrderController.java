@@ -31,7 +31,6 @@ import com.simplilearn.sportyshoes.model.ShoesCategory;
 import com.simplilearn.sportyshoes.model.SizeCategory;
 import com.simplilearn.sportyshoes.service.ExcelService;
 import com.simplilearn.sportyshoes.service.ProductService;
-
 @Controller
 public class PurchaseOrderController {
 	@Autowired

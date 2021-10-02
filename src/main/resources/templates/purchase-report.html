@@ -11,6 +11,11 @@
 </head>
 <style>
 
+.row
+{
+border: 3px solid gray;
+  border-radius: 5px;
+}
 .navbar {
 	background-color: green;
 }
@@ -30,18 +35,17 @@ width:300px;
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Home </a> <a
-					class="navbar-brand" th:href="@{/product}">Add New Product</a> 
-					 <a class="navbar-brand" th:href="@{/viewproducts}">Product List</a>
+				<a class="navbar-brand" href="#" th:href="@{/}"><span class="glyphicon glyphicon-home"></span> Home </a> <a
+					class="navbar-brand" th:href="@{/product}"> <span class="glyphicon glyphicon-save"></span> Add New Product</a> 
+					 <a class="navbar-brand" th:href="@{/viewproducts}"> <span class="glyphicon glyphicon-th-list"></span> Product List</a>
 					<a
 					class="navbar-brand" th:href="@{/purchaseReport}">Purchase
-					Report</a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
-					Signed Users</a> <a class="navbar-brand" th:href="@{/changepassword}">Change
+					Report  <span class="glyphicon glyphicon-download-alt"></span></a> <a class="navbar-brand" th:href="@{/signeduserlist}">View
+					Signed Users <span class="glyphicon glyphicon-search"></span></a> <a class="navbar-brand" th:href="@{/changepassword}">Change
 					Password</a> <a class="navbar-brand" th:href="@{/logout}">Logout</a>
 
 			</div>
 		</div>
-	</nav>
 	</nav>
 
 	<br>
@@ -49,11 +53,13 @@ width:300px;
 	<br>
 	<br>
 <body class="container">
+
+<br><br><div class="row">
 <center><h1>Download Purchase Report</h1><br><br></center>
 	<form th:action="@{/purchaseReport}" method="post"
 		th:object="${purchaseOrder}">
 		
-		<div class="form-group row">
+		<div class="form-group">
 		<div class="col-sm-1 col-sm-offset-1"></div>
 			<div class="col-md-3 mt-3">
 				<label for="dateRange">Select From Date</label>
@@ -66,24 +72,25 @@ width:300px;
 				<div class="input-group">
 					<input type="date"  name="toDate" id="date-started"/>
 				</div>
-			</div><br>
-			<div class="col-md-2 mt-2" th:object="${purchaseOrder.categorylist}">
-			
+			</div>
+			<div class="col-md-3 mt-2" th:object="${purchaseOrder.categorylist}">
+			<label for="dateRange">Shoe Category</label>
 			<select class="form-control" id="id" name=shoe_type>
 				<option value="">Select Shoe Category</option>
 				<option th:each="shoe : ${purchaseOrder.categorylist}"
 					th:value="${shoe.shoe_type}"
 					th:text="${shoe.id}+' : '+${shoe.shoe_type}"></option>
 			</select>
+			<br><br>
 			</div>
 
 			
 		</div>
-
+</div>
 
 					
 						<br>	<center>			<input type="submit" name="login-submit" id="login-submit"
-									class="form-control btn btn-primary" value="Submit" /></center>
+									class="form-control btn btn-primary" value="Download Report" /></center>
 	</form>
 </body>
 </body>

@@ -11,6 +11,8 @@ INSERT INTO signedup_users (first_name, last_name, email,contact_no,address) VAL
   ('Bill', 'Gates', 'bill@gmail.com','9876543213','Bihar'),
   ('Folrunsho', 'Alakija', 'folrunsho@gmail.com','9876543213','Maharashtra');
   
+  
+  
  
   INSERT INTO purchase_orders 
  (ordered_by,orderdate,po_promise_date,po_paid,po_paid_type,po_confirmed,po_cancelled,product_name,category,product_quantity,shoe_color,shoe_size,shoecategory)

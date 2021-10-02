@@ -1,5 +1,4 @@
 package com.simplilearn.sportyshoes.model;
-
 import java.util.Collection;
 
 import javax.persistence.CascadeType;

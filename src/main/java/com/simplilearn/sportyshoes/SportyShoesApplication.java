@@ -7,10 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.WebApplicationInitializer;
 
 import com.simplilearn.sportyshoes.config.SessionListener;
-
-
-
-
 /**
  * @author surekha
  *

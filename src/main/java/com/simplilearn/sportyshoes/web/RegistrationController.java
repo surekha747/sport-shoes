@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.simplilearn.sportyshoes.dto.UserRegistrationDto;
 import com.simplilearn.sportyshoes.service.UserService;
-
-
-
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {

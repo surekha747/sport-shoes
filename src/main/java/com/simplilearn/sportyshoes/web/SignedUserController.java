@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.simplilearn.sportyshoes.model.SignedUsers;
 import com.simplilearn.sportyshoes.service.SignedUserService;
-
 @Controller
 @RequestMapping("/signeduserlist")
 public class SignedUserController {
